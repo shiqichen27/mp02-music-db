@@ -283,4 +283,10 @@ if __name__ == "__main__":
     #       Print a confirmation message.  Close the target connection when done.
     #
     # Your code here:
-    print("\nSkipping backup step (debug mode)")
+    print("\nPersisting database to music.db ...")
+    DB_PATH = "music.db"
+    target_conn = sqlite3.connect(DB_PATH)
+    conn.backup(target_conn)
+    target_conn.close()
+    conn.close()
+    print("Database written to music.db")
