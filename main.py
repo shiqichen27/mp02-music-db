@@ -98,7 +98,7 @@ def show_tracks_on_no_playlist(conn):
     # TODO: call get_tracks_on_no_playlist(conn)
     #       Print each row with track_id, title, and artist name.
     #       If the list is empty, print a message confirming all tracks are assigned.
-    rows = rows = get_tracks_on_no_playlist(conn) # replace with: get_tracks_on_no_playlist(conn)
+    rows = get_tracks_on_no_playlist(conn) # replace with: get_tracks_on_no_playlist(conn)
     if not rows:
         print("  All tracks are assigned to at least one playlist.")
         return
@@ -240,7 +240,7 @@ def open_or_build_database():
         conn.execute("PRAGMA foreign_keys = ON;")
         print("  [First run — database built and saved to music.db]")
         return conn
-    """
+
 
 # ─────────────────────────────────────────────────────────────────────────────
 # Menu loop
