@@ -24,8 +24,8 @@ def get_tracks_on_no_playlist(conn):
                 t.title,
                 a.name AS artist_name
         FROM    Track t
-        LEFT JOIN PlaylistTrack pt ON t.track_id = pt.track_id
         JOIN    Artist a ON t.artist_id = a.artist_id
+        LEFT JOIN PlaylistTrack pt ON t.track_id = pt.track_id
         WHERE   pt.track_id IS NULL
     """
     return conn.execute(query).fetchall()
