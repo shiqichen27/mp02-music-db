@@ -130,9 +130,12 @@ def seed_database(conn):
     # TODO: replace placeholder data with your team's chosen artists
 
     artists = [
-        # (artist_id, name, genre, origin_city),
-        (1, "TODO — Artist Name", "TODO — Genre", "TODO — City"),
-        # add at least 5 more rows ...
+        (1, "Drake", "Pop", "Toronto"),
+        (2, "Taylor Swift", "Pop", "Pennsylvania"),
+        (3, "Bruno Mars", "Pop", "Honolulu"),
+        (4, "Ariana Grande", "Pop", "Boca Raton"),
+        (5, "One Direction", "Pop", "London"),
+        (6, "Justin Bieber", "Pop", "London, Ontario")
     ]
 
     conn.executemany(
@@ -147,9 +150,29 @@ def seed_database(conn):
     # TODO: replace placeholder data with your team's chosen tracks (minimum 18)
 
     tracks = [
-        # (track_id, title, duration_seconds, artist_id),
-        (1, "TODO — Track Title", 200, 1),
-        # add at least 17 more rows ...
+        (1, "God's Plan", 198, 1),
+        (2, "Hotline Bling", 267, 1),
+        (3, "One Dance", 173, 1),
+
+        (4, "Love Story", 235, 2),
+        (5, "Blank Space", 231, 2),
+        (6, "Shake It Off", 219, 2),
+
+        (7, "Grenade", 223, 3),
+        (8, "24K Magic", 226, 3),
+        (9, "Just the Way You Are", 220, 3),
+
+        (10, "7 rings", 179, 4),
+        (11, "positions", 172, 4),
+        (12, "thank u, next", 207, 4),
+
+        (13, "What Makes You Beautiful", 199, 5),
+        (14, "Story of My Life", 246, 5),
+        (15, "Night Changes", 227, 5),
+
+        (16, "Sorry", 200, 6),
+        (17, "Baby", 214, 6),
+        (18, "Peaches", 198, 6)
     ]
 
     conn.executemany(
@@ -162,11 +185,11 @@ def seed_database(conn):
     # TODO: replace placeholder data with your team's chosen playlists (minimum 4)
 
     playlists = [
-        # (playlist_id, playlist_name, owner_name),
-        (1, "TODO — Playlist Name", "TODO — Owner"),
-        # add at least 3 more rows ...
+        (1, "Party Hits", "Jenna"),
+        (2, "Workout Mix", "Jenny"),
+        (3, "Favorites", "Melody"),
+        (4, "Chill Vibes", "Shiqi")
     ]
-
     conn.executemany(
         "INSERT OR IGNORE INTO Playlist VALUES (?, ?, ?)",
         playlists
@@ -181,9 +204,28 @@ def seed_database(conn):
     # TODO: replace placeholder data with your team's chosen assignments (minimum 20)
 
     playlist_tracks = [
-        # (playlist_id, track_id, position),
         (1, 1, 1),
-        # add at least 19 more rows ...
+        (1, 4, 2),
+        (1, 7, 3),
+        (1, 10, 4),
+        (1, 13, 5),
+        (2, 2, 1),
+        (2, 5, 2),
+        (2, 8, 3),
+        (2, 11, 4),
+        (2, 14, 5),
+
+        (3, 3, 1),
+        (3, 6, 2),
+        (3, 9, 3),
+        (3, 12, 4),
+        (3, 15, 5),
+
+        (4, 16, 1),
+        (4, 17, 2),
+        (4, 18, 3),
+        (4, 1, 4),
+        (4, 5, 5)
     ]
 
     conn.executemany(
@@ -242,10 +284,7 @@ if __name__ == "__main__":
     #
     # Your code here:
     print("\nPersisting database to music.db ...")
-    DB_PATH = "music.db"
-    target_conn = sqlite3.connect(DB_PATH)
-    conn.backup(target_conn)
-    target_conn.close()
-    conn.close()
-    print(f"  Backup complete.  File size: {os.path.getsize(DB_PATH):,} bytes")
-    print(f"  Reopen with:  sqlite3.connect('{DB_PATH}')")
+    target = sqlite3.connect("music.db")
+    conn.backup(target)
+    target.close()
+    print("Database written to music.db")
