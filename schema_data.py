@@ -284,10 +284,7 @@ if __name__ == "__main__":
     #
     # Your code here:
     print("\nPersisting database to music.db ...")
-    DB_PATH = "music.db"
-    target_conn = sqlite3.connect(DB_PATH)
-    conn.backup(target_conn)
-    target_conn.close()
-    conn.close()
-    
+    target = sqlite3.connect("music.db")
+    conn.backup(target)
+    target.close()
     print("Database written to music.db")
